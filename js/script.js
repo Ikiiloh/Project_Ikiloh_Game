@@ -2,7 +2,19 @@ $(document).ready(function() {
     let isPlaying = false;
     let allFetchedGames = []; // <-- 1. VARIABEL BARU UNTUK MENYIMPAN SEMUA GAME
 
-        // Fungsi displayError ...
+    // Function to show/hide loading screen
+    function toggleLoadingScreen(show) {
+        if (show) {
+            $('#loading-screen').fadeIn(300);
+        } else {
+            $('#loading-screen').fadeOut(300);
+        }
+    }
+
+    // Hide loading screen initially
+    toggleLoadingScreen(false);
+
+    // Fungsi displayError ...
     function displayError(message, isFatal = false) {
         const errorHtml = `
             <div class="no-games-message">
@@ -136,16 +148,20 @@ $(document).ready(function() {
             timeout: 10000,
             success: function(storesData) {
                 processStoreData(data, storesData);
+                toggleLoadingScreen(false); // Hide loading screen after data is processed
             },
             error: function(xhr, status, error) {
                 handleStoreError(data, error);
+                toggleLoadingScreen(false); // Hide loading screen on error
             }
         });
+        toggleLoadingScreen(false);
     }
 
     // Function to load initial deals
     function loadInitialDeals() {
         $('#search-input').val('');
+        toggleLoadingScreen(true); // Show loading screen
         $.ajax({
             url: 'https://www.cheapshark.com/api/1.0/deals',
             type: 'GET',
@@ -156,6 +172,7 @@ $(document).ready(function() {
             },
             error: function(xhr, status, error) {
                 handleApiError(xhr, status, error, 'loading games');
+                toggleLoadingScreen(false); // Hide loading screen on error
             }
         });
     }
@@ -169,6 +186,7 @@ $(document).ready(function() {
             return;
         }
 
+        toggleLoadingScreen(true); // Show loading screen
         $.ajax({
             url: 'https://www.cheapshark.com/api/1.0/deals',
             type: 'GET',
@@ -180,12 +198,14 @@ $(document).ready(function() {
             success: function(data) {
                 if (!data || data.length === 0) {
                     displayError('No games found. Please try a different search term.');
+                    toggleLoadingScreen(false); // Hide loading screen
                     return;
                 }
                 fetchStoreData(data);
             },
             error: function(xhr, status, error) {
                 handleApiError(xhr, status, error, 'searching games');
+                toggleLoadingScreen(false); // Hide loading screen on error
             }
         });
     });

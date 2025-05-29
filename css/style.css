@@ -211,7 +211,7 @@ body {
 
 /* Game Image Styles */
 .game-thumb {
-    width: 80px;
+    width: 120px;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -405,6 +405,12 @@ body {
         max-width: none;
         flex-grow: 1;
     }
+
+    /* Game image adjustments */
+    .game-thumb {
+        width: 100px;
+        height: auto;
+    }
 }
 
 @keyframes musicPulse {
@@ -434,6 +440,10 @@ body {
         bottom: 50px !important;
         right: 15px !important;
         font-size: 16px !important;
+    }
+
+    .game-thumb {
+        width: 80px;
     }
 }
 
@@ -476,12 +486,6 @@ body {
         padding: 0.5rem;
     }
 
-    /* Game image adjustments */
-    .game-thumb {
-        width: 50px;
-        height: auto;
-    }
-
     /* Text adjustments */
     h1 {
         font-size: 1.5rem;
@@ -520,7 +524,7 @@ body {
     }
 
     .game-thumb {
-        width: 40px;
+        width: 80px;
     }
 
     .table th,
@@ -699,5 +703,101 @@ html, body {
 @media (min-width: 769px) {
     .custom-scrollbar-container {
         display: none !important;
+    }
+}
+
+/* Retro Loading Screen Styles */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0a2342;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-family: 'Press Start 2P', system-ui;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.loading-text {
+    color: #FFFFFF;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px #000080;
+    animation: blink 1s infinite;
+}
+
+.loading-bar {
+    width: 200px;
+    height: 20px;
+    background-color: #000080;
+    border: 3px solid #FFFFFF;
+    position: relative;
+    margin: 0 auto;
+}
+
+.loading-bar-fill {
+    width: 0%;
+    height: 100%;
+    background-color: #FFFFFF;
+    animation: fill 2s infinite;
+}
+
+.loading-pixel {
+    width: 10px;
+    height: 10px;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pixelMove 2s infinite;
+}
+
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+@keyframes fill {
+    0% { width: 0%; }
+    50% { width: 100%; }
+    100% { width: 0%; }
+}
+
+@keyframes pixelMove {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    25% { transform: translate(-50%, -50%) rotate(90deg); }
+    50% { transform: translate(-50%, -50%) rotate(180deg); }
+    75% { transform: translate(-50%, -50%) rotate(270deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Responsive adjustments for loading screen */
+@media (max-width: 768px) {
+    .loading-text {
+        font-size: 18px;
+    }
+    
+    .loading-bar {
+        width: 150px;
+        height: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .loading-text {
+        font-size: 14px;
+    }
+    
+    .loading-bar {
+        width: 120px;
+        height: 12px;
     }
 }
