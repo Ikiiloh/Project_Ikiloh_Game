@@ -2,9 +2,6 @@ $(document).ready(function() {
     let isPlaying = false;
     let allFetchedGames = [];
 
-    // Fallback API URL jika config.js tidak ada
-    const API_URL = typeof window.API_URL !== 'undefined' ;
-
     // Function to show/hide loading screen
     function toggleLoadingScreen(show) {
         if (show) {

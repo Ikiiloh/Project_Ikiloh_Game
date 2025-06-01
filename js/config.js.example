@@ -1,4 +1,0 @@
-// Template untuk konfigurasi API
-// 1. Copy file ini dan rename menjadi 'config.js'
-// 2. Ganti URL_API dengan URL API Anda
-const API_URL = 'YOUR_API_URL_HERE'; // Contoh: 'https://api.example.com/v1' 

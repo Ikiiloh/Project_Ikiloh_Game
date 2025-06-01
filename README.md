@@ -39,15 +39,6 @@ Project Ikiiloh_Game adalah sebuah *aggregator* penawaran game yang memanfaatkan
 
 Aplikasi ini mengambil data penawaran game secara *real-time* dari **[CheapShark API](https://www.cheapshark.com/api/)**.
 
-## Konfigurasi API
-
-Untuk menggunakan aplikasi ini, Anda perlu mengatur konfigurasi API:
-
-1. Di folder `js`, Anda akan menemukan file `config.js.example`
-2. Copy file tersebut dan rename menjadi `config.js`
-3. Buka file `config.js` dan ganti `YOUR_API_URL_HERE` dengan URL API yang Anda gunakan
-4. File `config.js` sudah di-ignore oleh Git untuk keamanan
-
 ## Cara Menggunakan
 
 1.  **Buka Aplikasi:** Cukup buka file `index.html` di browser web favorit Anda.
