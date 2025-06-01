@@ -1,2 +1,1 @@
-// Konfigurasi untuk browser
-const API_URL = window.env?.API_URL; 
+const API_URL = 'https://www.cheapshark.com/api/1.0'; 
