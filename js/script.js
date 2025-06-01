@@ -3,7 +3,7 @@ $(document).ready(function() {
     let allFetchedGames = [];
 
     // Fallback API URL jika config.js tidak ada
-    const API_URL = typeof window.API_URL !== 'undefined' ? window.API_URL : 'https://www.cheapshark.com/api/1.0';
+    const API_URL = typeof window.API_URL !== 'undefined' ;
 
     // Function to show/hide loading screen
     function toggleLoadingScreen(show) {
