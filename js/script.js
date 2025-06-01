@@ -2,6 +2,9 @@ $(document).ready(function() {
     let isPlaying = false;
     let allFetchedGames = [];
 
+    // Fallback API URL jika config.js tidak ada
+    const API_URL = typeof window.API_URL !== 'undefined' ? window.API_URL : 'https://www.cheapshark.com/api/1.0';
+
     // Function to show/hide loading screen
     function toggleLoadingScreen(show) {
         if (show) {
