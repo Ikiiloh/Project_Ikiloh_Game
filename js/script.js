@@ -1,6 +1,6 @@
 $(document).ready(function() {
     let isPlaying = false;
-    let allFetchedGames = []; // <-- 1. VARIABEL BARU UNTUK MENYIMPAN SEMUA GAME
+    let allFetchedGames = [];
 
     // Function to show/hide loading screen
     function toggleLoadingScreen(show) {
@@ -142,28 +142,27 @@ $(document).ready(function() {
     // Function to fetch store data
     function fetchStoreData(data) {
         $.ajax({
-            url: 'https://www.cheapshark.com/api/1.0/stores',
+            url: API_URL + '/stores',
             type: 'GET',
             dataType: 'json',
             timeout: 10000,
             success: function(storesData) {
                 processStoreData(data, storesData);
-                toggleLoadingScreen(false); // Hide loading screen after data is processed
+                toggleLoadingScreen(false);
             },
             error: function(xhr, status, error) {
                 handleStoreError(data, error);
-                toggleLoadingScreen(false); // Hide loading screen on error
+                toggleLoadingScreen(false);
             }
         });
-        toggleLoadingScreen(false);
     }
 
     // Function to load initial deals
     function loadInitialDeals() {
         $('#search-input').val('');
-        toggleLoadingScreen(true); // Show loading screen
+        toggleLoadingScreen(true);
         $.ajax({
-            url: 'https://www.cheapshark.com/api/1.0/deals',
+            url: API_URL + '/deals',
             type: 'GET',
             dataType: 'json',
             timeout: 10000,
@@ -172,7 +171,7 @@ $(document).ready(function() {
             },
             error: function(xhr, status, error) {
                 handleApiError(xhr, status, error, 'loading games');
-                toggleLoadingScreen(false); // Hide loading screen on error
+                toggleLoadingScreen(false);
             }
         });
     }
@@ -186,9 +185,9 @@ $(document).ready(function() {
             return;
         }
 
-        toggleLoadingScreen(true); // Show loading screen
+        toggleLoadingScreen(true);
         $.ajax({
-            url: 'https://www.cheapshark.com/api/1.0/deals',
+            url: API_URL + '/deals',
             type: 'GET',
             dataType: 'json',
             data: {
@@ -198,14 +197,14 @@ $(document).ready(function() {
             success: function(data) {
                 if (!data || data.length === 0) {
                     displayError('No games found. Please try a different search term.');
-                    toggleLoadingScreen(false); // Hide loading screen
+                    toggleLoadingScreen(false);
                     return;
                 }
                 fetchStoreData(data);
             },
             error: function(xhr, status, error) {
                 handleApiError(xhr, status, error, 'searching games');
-                toggleLoadingScreen(false); // Hide loading screen on error
+                toggleLoadingScreen(false);
             }
         });
     });
