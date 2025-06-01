@@ -1,5 +1,12 @@
 {
+  "name": "ikiiloh-game",
+  "version": "1.0.0",
+  "description": "Game deals finder application",
+  "scripts": {
+    "build": "node build.js",
+    "predeploy": "npm run build"
+  },
   "dependencies": {
-    "dotenv": "^16.5.0"
+    "dotenv": "^16.3.1"
   }
 }
